@@ -22,15 +22,16 @@ function displayChannels() {
 			imgStr = "<img src='http://s.jtvnw.net/jtv_user_pictures/hosted_images/GlitchIcon_PurpleonWhite.png' alt='logo' class='logo'>";
 		}
 
-		var htmlStr = imgStr + " <a href='" + chan.url + "' target='_blank'>" + chan.displayName + "</a>";
+		var htmlStr;
 		var htmlSuffix;
 
 		if (state === 'streaming' && chan.streamStatus.length > 0) {
+				htmlStr = imgStr + " <a href='" + chan.url + "' target='_blank'>" + chan.displayName + "</a><i class='fa fa-video-camera fa-lg'></i>";
 				htmlSuffix = " <p class='desc'>" + chan.streamStatus + "</p>";
 				p.innerHTML = htmlStr + htmlSuffix;
 				divChannelsList.appendChild(p);
 		} else if (state === 'notStreaming' && chan.streamStatus.length === 0) {
-				//htmlSuffix = ' channel is not streaming';
+				htmlStr = imgStr + " <a href='" + chan.url + "' target='_blank'>" + chan.displayName + "</a><i class='fa fa-ban fa-lg'></i>";
 				p.innerHTML = htmlStr; //+ htmlSuffix;
 				divChannelsList.appendChild(p);
 		}
@@ -103,8 +104,11 @@ channelNames.forEach(function(chan) {
 
 //event handlers
 function onlineHeaderClickListener() {
-	console.log('online click');
+	//console.log('online click');
 	if (state === 'notStreaming') {
+		$('.offline').removeClass('active');
+		$('.online').addClass('active');
+
 		state = 'streaming';
 		var divChannelsList = document.querySelector('.channelsList');
 		divChannelsList.innerHTML = '';
@@ -114,8 +118,11 @@ function onlineHeaderClickListener() {
 }
 
 function offlineHeaderClickListener() {
-	console.log('offline click');
+	//console.log('offline click');
 	if (state === 'streaming') {
+		$('.online').removeClass('active');
+		$('.offline').addClass('active');
+
 		state = 'notStreaming';
 		var divChannelsList = document.querySelector('.channelsList');
 		divChannelsList.innerHTML = '';
