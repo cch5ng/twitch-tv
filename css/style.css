@@ -15,7 +15,9 @@ p {
 	font-size: 1.15em;
 }
 
-footer, .desc {
+footer {
+	margin-top: 50px;
+	text-align: center;
 	color: #042e48;
 	font-size: 0.85em;
 }
@@ -73,6 +75,9 @@ a {
 
 /* overwriting font awesome stylesheet */
 .fa {
+}
+
+.fa-ban, .fa-video-camera {
 	float: right;
 	margin-top: 15px;
 	margin-right: 75px;
