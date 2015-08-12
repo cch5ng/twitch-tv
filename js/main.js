@@ -22,8 +22,8 @@ function displayChannels() {
 				p.innerHTML = htmlStr + htmlSuffix;
 				divChannelsList.appendChild(p);
 		} else if (state === 'notStreaming' && chan.streamStatus.length === 0) {
-				htmlSuffix = ' channel is not streaming';
-				p.innerHTML = htmlStr + htmlSuffix;
+				//htmlSuffix = ' channel is not streaming';
+				p.innerHTML = htmlStr; //+ htmlSuffix;
 				divChannelsList.appendChild(p);
 		}
 	});
