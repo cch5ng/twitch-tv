@@ -18,7 +18,7 @@ function displayChannels() {
 		var htmlSuffix;
 
 		if (state === 'streaming' && chan.streamStatus.length > 0) {
-				htmlSuffix = ' channel is streaming';
+				htmlSuffix = ' <br>' + chan.streamStatus;
 				p.innerHTML = htmlStr + htmlSuffix;
 				divChannelsList.appendChild(p);
 		} else if (state === 'notStreaming' && chan.streamStatus.length === 0) {
