@@ -22,7 +22,7 @@ function displayChannels() {
 			imgStr = "<img src='http://s.jtvnw.net/jtv_user_pictures/hosted_images/GlitchIcon_PurpleonWhite.png' alt='logo' class='logo'>";
 		}
 
-		var htmlStr = imgStr + " <a href='" + chan.url + "' target='_blank'>" + chan.name + "</a>";
+		var htmlStr = imgStr + " <a href='" + chan.url + "' target='_blank'>" + chan.displayName + "</a>";
 		var htmlSuffix;
 
 		if (state === 'streaming' && chan.streamStatus.length > 0) {
@@ -37,7 +37,7 @@ function displayChannels() {
 	});
 }
 
-function getIcons() {
+function getDisplayNameLogo() {
 	var counter = 0;
 
 	channels.forEach(function(chan) {
@@ -47,9 +47,11 @@ function getIcons() {
 			url: requestUrl,
 			dataType: 'jsonp'
 		}).done(function(result) {
+			chan.displayName = result.display_name;
 			if (result.logo) {
 				chan.logoUrl = result.logo;
 			}
+
 			counter++;
 		}).fail(function(err) {
 			console.log('error: ' + err);
@@ -90,7 +92,7 @@ function isStreaming(channel) {
 	}).always(function() {
 		if (channels.length === channelNames.length) {
 			console.log('finished');
-			getIcons();
+			getDisplayNameLogo();
 		}
 	});
 }
