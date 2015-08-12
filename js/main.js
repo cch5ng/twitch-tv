@@ -14,7 +14,15 @@ function displayChannels() {
 		var p = document.createElement('p');
 		p.setAttribute('class', 'channel');
 
-		var htmlStr = "<a href='" + chan.url + "' target='_blank'>" + chan.name + "</a>";
+		var imgStr = '';
+
+		if (chan.logoUrl) {
+			imgStr = "<img src='" + chan.logoUrl + "' alt='logo' class='logo'>";
+		} else {
+			imgStr = "<img src='http://s.jtvnw.net/jtv_user_pictures/hosted_images/GlitchIcon_PurpleonWhite.png' alt='logo' class='logo'>";
+		}
+
+		var htmlStr = imgStr + " <a href='" + chan.url + "' target='_blank'>" + chan.name + "</a>";
 		var htmlSuffix;
 
 		if (state === 'streaming' && chan.streamStatus.length > 0) {
@@ -29,34 +37,62 @@ function displayChannels() {
 	});
 }
 
-function isStreaming(channel) {
-  var requestUrl = 'https://api.twitch.tv/kraken/streams/' + channel;
-  var channelObj = {};
-      
-  var jqxhr = $.ajax({
-    url: requestUrl,
-    dataType: 'jsonp'
-  }).done(function(result) {
-    channelObj.name = channel;
+function getIcons() {
+	var counter = 0;
 
-    if (result.stream === null) {
-      channelObj.streamStatus = '';
-      channelObj.url = 'http://www.twitch.tv/' + channel;
-    } else {
-      channelObj.streamStatus = result.stream.channel.status;
-      channelObj.url = result.stream.channel.url;
-    }
-    
-    channels.push(channelObj);
-    //console.log(channels);
-  }).fail(function(err) {
-    console.log('error: ' + err);
-  }).always(function() {
-    if (channels.length === channelNames.length) {
-      console.log('finished');
-      displayChannels();
-    }
-  });
+	channels.forEach(function(chan) {
+		var requestUrl = 'https://api.twitch.tv/kraken/users/' + chan.name;
+
+		var jqxhr = $.ajax({
+			url: requestUrl,
+			dataType: 'jsonp'
+		}).done(function(result) {
+			if (result.logo) {
+				chan.logoUrl = result.logo;
+			}
+			counter++;
+		}).fail(function(err) {
+			console.log('error: ' + err);
+		}).always(function() {
+			if (counter === channelNames.length) {
+				console.log('finished');
+				displayChannels();
+
+				console.log('channels ar: ' + channels);
+				console.log('last channel logoUrl: ' + channels[channels.length - 1].logoUrl);
+			}
+		});
+	});
+}
+
+function isStreaming(channel) {
+	var requestUrl = 'https://api.twitch.tv/kraken/streams/' + channel;
+	var channelObj = {};
+
+	var jqxhr = $.ajax({
+		url: requestUrl,
+		dataType: 'jsonp'
+	}).done(function(result) {
+		channelObj.name = channel;
+
+		if (result.stream === null) {
+			channelObj.streamStatus = '';
+			channelObj.url = 'http://www.twitch.tv/' + channel;
+		} else {
+			channelObj.streamStatus = result.stream.channel.status;
+			channelObj.url = result.stream.channel.url;
+		}
+
+		channels.push(channelObj);
+		//console.log(channels);
+	}).fail(function(err) {
+		console.log('error: ' + err);
+	}).always(function() {
+		if (channels.length === channelNames.length) {
+			console.log('finished');
+			getIcons();
+		}
+	});
 }
 
 channelNames.forEach(function(chan) {
