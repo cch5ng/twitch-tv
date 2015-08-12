@@ -1,14 +1,14 @@
 body {
-	margin-top: 15px;
-	/*background-color: #b0aeba;*/
+	/*margin-top: 15px;*/
+	background-color: #cce7e7;
 	color: #000;
 	font-family: 'Open Sans', sans-serif;
-	border: 1px solid red;
+	/*border: 2px solid #dc5757;*/
 }
 
 h2 {
 	text-align: center;
-	margin-top: 0;
+	margin-top: 30px;
 }
 
 p {
@@ -22,8 +22,8 @@ footer, .desc {
 }
 
 .nav {
-	width: 30%;
-	margin: 0 auto;
+	width: 90%;
+	margin: 35px auto 0;
 	/*padding: 5px 0;*/
 	background-color: #008B8B;
 /*	text-align: center;*/
@@ -33,18 +33,29 @@ footer, .desc {
 	float: left;
 	list-style: none;
 	width: 50%;
-	font-size: 1.15em;
+	font-size: 1.4em;
 	text-align: center;
 	padding: 5px 15px;
-	border: 1px solid red;
+}
+
+.online {
+	border: 2px solid #dc5757;
+}
+
+.offline {
+	border-top: 2px solid #dc5757;
+	border-right: 2px solid #dc5757;
+	border-bottom: 2px solid #dc5757;
 }
 
 .channelsList {
 	background-color: #ccc;
-	width: 30%;
+	width: 90%;
 	margin: 0 auto;
-	padding: 5px;
-	border: 1px solid red;
+	padding: 8px;
+	border-right: 2px solid #dc5757;
+	border-bottom: 2px solid #dc5757;
+	border-left: 2px solid #dc5757;
 }
 
 .logo {
@@ -53,70 +64,47 @@ footer, .desc {
 	border-radius: 50%;
 }
 
-/* phone landscape does not look good */
+/*@media only screen and (min-width: 480px) {
+}*/
 
-@media only screen and (min-width: 480px) {
-}
-
-@media only screen and (min-width: 600px) and (orientation: portrait) {
-
-	body {
-	}
-
-	h2 {
-		margin-top: 20px;
-	}
-
-}
+/*@media only screen and (min-width: 600px) and (orientation: portrait) {
+}*/
 
 @media only screen and (min-width: 640px) and (orientation: landscape) {
 
-	body {
-	}
-
 	h2 {
-		text-align: left;
-		margin-top: 0;
+		margin-top: 15px;
 	}
 
-	p {
-		text-align: left;
+	.nav, .channelsList {
+		width: 70%;
 	}
 
-	.button {
-		margin: 10px 0;
+	.nav {
+		margin: 15px auto 0;
 	}
 
 }
 
 @media only screen and (min-width: 768px) {
 
-	body {
-	}
-
 	h2 {
-		text-align: center;
-		/*margin-top: 110px;*/
+		margin-top: 50px;
 	}
 
-	p {
-		/*text-align: center;*/
-	}
-
-	.button {
-		margin: 30px auto;
+	.nav {
+		margin: 35px auto 0;
 	}
 }
 
 @media only screen and (min-width: 992px) {
-	body {
+
+	.nav, .channelsList {
+		width: 50%;
 	}
 
-	header {
-		/*margin-top: 110px;*/
-	}
 }
 
-@media only screen and (min-width: 1200px) {
-	/* how to handle case where screen is wider than image width*/
-}
+/*@media only screen and (min-width: 1200px) {
+	 how to handle case where screen is wider than image width
+}*/
