@@ -1,6 +1,6 @@
 body {
 	margin-top: 15px;
-	background-color: #b0aeba;
+	/*background-color: #b0aeba;*/
 	color: #000;
 	font-family: 'Open Sans', sans-serif;
 	border: 1px solid red;
@@ -16,7 +16,7 @@ p {
 	/*text-align: center;*/
 }
 
-footer {
+footer, .desc {
 	color: #042e48;
 	font-size: 0.85em;
 }
@@ -24,6 +24,8 @@ footer {
 .nav {
 	width: 30%;
 	margin: 0 auto;
+	/*padding: 5px 0;*/
+	background-color: #008B8B;
 /*	text-align: center;*/
 }
 
@@ -33,13 +35,16 @@ footer {
 	width: 50%;
 	font-size: 1.15em;
 	text-align: center;
-	padding: 0 15px;
+	padding: 5px 15px;
 	border: 1px solid red;
 }
 
 .channelsList {
+	background-color: #ccc;
 	width: 30%;
 	margin: 0 auto;
+	padding: 5px;
+	border: 1px solid red;
 }
 
 .buttons {
